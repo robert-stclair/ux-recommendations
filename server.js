@@ -53,26 +53,29 @@ app.get('/', (req, res) => {
     fs.readFileSync(path.join(__dirname, 'recommendations.json'), 'utf8')
   );
 
-  // If smart guide is enabled, add smart guide recs to the pool
+  // If smart guide is enabled, add 3 smart guide recs to the regular 7
   if (smartGuideEnabled) {
     try {
       const smartGuideRecs = JSON.parse(
         fs.readFileSync(path.join(__dirname, 'smart-guide-recommendations.json'), 'utf8')
       );
-      // Add smart guide recs to the pool
-      allRecommendations = [...smartGuideRecs, ...recommendations];
+      // Shuffle and take 3 smart guide recs
+      const shuffledSmartGuide = [...smartGuideRecs].sort(() => Math.random() - 0.5);
+      const selectedSmartGuide = shuffledSmartGuide.slice(0, 3);
+
+      // Combine 3 smart guide + 7 regular (total 10)
+      allRecommendations = [...selectedSmartGuide, ...recommendations];
     } catch (err) {
       console.log('No smart guide recommendations found');
       allRecommendations = recommendations;
     }
   } else {
+    // Just show the 7 regular recommendations
     allRecommendations = recommendations;
   }
 
-  // Shuffle and take 5 from the combined pool
-  const shuffled = [...allRecommendations].sort(() => Math.random() - 0.5);
-  const selectedRecommendations = shuffled.slice(0, 5);
-  recommendationHTML += selectedRecommendations.map((rec) => generateRecommendationHTML(rec, index++)).join('');
+  // Show all recommendations (no shuffling or limiting at this level)
+  recommendationHTML += allRecommendations.map((rec) => generateRecommendationHTML(rec, index++)).join('');
 
   // Replace the placeholder in the HTML
   html = html.replace('<!-- RECOMMENDATIONS_PLACEHOLDER -->', recommendationHTML);
