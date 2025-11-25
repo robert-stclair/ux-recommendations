@@ -1,0 +1,50 @@
+[
+  {
+    "icon": "💳",
+    "title": "Set up automated payments",
+    "description": "Set up payment rules to automatically charge guests and reduce manual work.",
+    "buttonText": "Configure payments"
+  },
+  {
+    "icon": "📈",
+    "title": "Add more rate plans",
+    "description": "Create additional rate plans to sell your rooms in different ways and maximize revenue.",
+    "buttonText": "Create rate plan"
+  },
+  {
+    "icon": "🎁",
+    "title": "Create your first extra",
+    "description": "Offer guests extras like breakfast or parking to increase your revenue per booking.",
+    "buttonText": "Add extras"
+  },
+  {
+    "icon": "🎟️",
+    "title": "Create a promotion code",
+    "description": "Create promotion codes to offer guests discounts and drive more bookings.",
+    "buttonText": "Create promotion"
+  },
+  {
+    "icon": "⭐",
+    "title": "Integrate Tripadvisor Review Express",
+    "description": "Automatically send review requests to guests after their stay to boost your reputation.",
+    "buttonText": "Connect Tripadvisor"
+  },
+  {
+    "icon": "📊",
+    "title": "Add a channel for rate parity",
+    "description": "Add channels to Insights to monitor and maintain rate parity across all your distribution.",
+    "buttonText": "Add channel source"
+  },
+  {
+    "icon": "🏨",
+    "title": "Add a competitor",
+    "description": "Compare your rates with competitors to stay competitive in your market.",
+    "buttonText": "Add competitor"
+  },
+  {
+    "icon": "✉️",
+    "title": "Configure guest departure emails",
+    "description": "Set up automated emails to thank guests after checkout and encourage reviews.",
+    "buttonText": "Setup emails"
+  }
+]

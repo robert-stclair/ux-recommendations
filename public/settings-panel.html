@@ -1,0 +1,193 @@
+<div class="settings-overlay" id="settingsOverlay">
+  <div class="settings-panel">
+    <div class="settings-header">
+      <h2>Settings</h2>
+      <button class="settings-close" id="settingsClose">&times;</button>
+    </div>
+    <div class="settings-content">
+      <div class="setting-item">
+        <label class="setting-label">
+          <input type="checkbox" id="smartGuideToggle" class="setting-checkbox">
+          <span class="setting-name">Smart Guide</span>
+        </label>
+        <p class="setting-description">Show additional contextual recommendations at the top of the list</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .settings-overlay {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 10000;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .settings-overlay.visible {
+    display: flex;
+  }
+
+  .settings-panel {
+    background: white;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .settings-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #E0E0E0;
+  }
+
+  .settings-header h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+  }
+
+  .settings-close {
+    background: none;
+    border: none;
+    font-size: 32px;
+    cursor: pointer;
+    color: #666;
+    line-height: 1;
+    padding: 0;
+    width: 32px;
+    height: 32px;
+  }
+
+  .settings-close:hover {
+    color: #333;
+  }
+
+  .settings-content {
+    padding: 24px;
+  }
+
+  .setting-item {
+    margin-bottom: 20px;
+  }
+
+  .setting-label {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  .setting-checkbox {
+    width: 20px;
+    height: 20px;
+    margin-right: 12px;
+    cursor: pointer;
+  }
+
+  .setting-name {
+    font-size: 16px;
+    font-weight: 500;
+  }
+
+  .setting-description {
+    margin: 8px 0 0 32px;
+    font-size: 14px;
+    color: #666;
+  }
+
+  /* Recommendation cards */
+  .pp-side-panel {
+    width: 320px !important;
+  }
+
+  .rec-card {
+    display: flex;
+    flex-direction: column;
+    background: #F8FBFF;
+    border: 1px solid #E8F1FF;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .rec-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .rec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .rec-icon {
+    font-size: 32px;
+  }
+
+  .rec-dismiss {
+    background: transparent;
+    border: 1px solid #4CAF50;
+    border-radius: 50%;
+    cursor: pointer;
+    color: #4CAF50;
+    padding: 0;
+    width: 20px;
+    height: 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    flex-shrink: 0;
+  }
+
+  .rec-dismiss:hover {
+    color: #fff;
+    background: #4CAF50;
+    border-color: #4CAF50;
+    transform: scale(1.15);
+  }
+
+  .rec-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin: 0 0 8px 0;
+  }
+
+  .rec-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+  }
+
+  .rec-action {
+    background: #4169E1;
+    color: white;
+    border: none;
+    padding: 10px 16px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+
+  .rec-action:hover {
+    background: #3154c7;
+  }
+
+  .rec-card.dismissed {
+    display: none;
+  }
+</style>
