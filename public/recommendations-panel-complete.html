@@ -1,0 +1,354 @@
+<!-- Map high-value rooms card -->
+<div class="rec-card" data-rec-index="0">
+  <div class="rec-header">
+    <div class="rec-icon">💰</div>
+    <button class="rec-dismiss" data-rec-index="0" aria-label="Dismiss recommendation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 10L8.5 12.5L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <h3 class="rec-title">Map high-value rooms</h3>
+  <p class="rec-description">Some of your most profitable rooms aren't available on key booking channels yet.</p>
+  <a href="#" class="rec-tell-me-more" data-rec-index="0">Tell me more</a>
+  <div class="rec-expanded-content" data-rec-index="0">
+    <p class="rec-description">Your "Bungalow" room type delivered 18% of total reservations last month however it is currently not listed on Booking.com. Adding it would give greater visibility for this high value room.</p>
+    <h4 class="rec-expanded-heading">Next steps</h4>
+    <ul class="rec-expanded-list">
+      <li><span class="rec-step-link">Map this room type</span> to a new or existing room type on Booking.com</li>
+      <li><span class="rec-step-link">Map any associated rates</span> to new or existing rates on Booking.com</li>
+    </ul>
+    <p class="rec-description"><a href="#" class="rec-help-link">Need help? Follow this guide</a></p>
+    <p class="rec-disclaimer">Note: There may be reasons for your current configuration. This is just our observation based on your recent data.</p>
+    <a href="#" class="rec-show-less" data-rec-index="0">Show less</a>
+  </div>
+</div>
+
+<!-- Other cards will be loaded here by JavaScript -->
+
+<style>
+  .pp-side-panel {
+    width: 320px !important;
+  }
+
+  .rec-card {
+    display: flex;
+    flex-direction: column;
+    background: #F8FBFF;
+    border: 1px solid #E8F1FF;
+    border-radius: 8px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+
+  .rec-card:last-child {
+    margin-bottom: 0;
+  }
+
+  .rec-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 12px;
+  }
+
+  .rec-icon {
+    font-size: 32px;
+  }
+
+  .rec-dismiss {
+    background: rgba(255, 255, 255, 0.9);
+    border: none;
+    cursor: pointer;
+    color: #ccc;
+    padding: 0;
+    width: 24px;
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.2s;
+    border-radius: 50%;
+    flex-shrink: 0;
+  }
+
+  .rec-dismiss:hover {
+    color: #4CAF50;
+    background: rgba(255, 255, 255, 1);
+    transform: scale(1.1);
+  }
+
+  .rec-title {
+    font-size: 16px;
+    font-weight: 600;
+    color: #1A1A1A;
+    margin: 0 0 8px 0;
+  }
+
+  .rec-description {
+    font-size: 14px;
+    color: #666;
+    line-height: 1.5;
+    margin: 0 0 16px 0;
+  }
+
+  .rec-tell-me-more {
+    color: #4169E1;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    transition: color 0.2s;
+  }
+
+  .rec-tell-me-more:hover {
+    color: #3154c7;
+    text-decoration: underline;
+  }
+
+  .rec-expanded-content {
+    max-height: 0;
+    overflow: hidden;
+    opacity: 0;
+    visibility: hidden;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, visibility 0s linear 0.4s;
+    margin-top: 0;
+    padding-top: 0;
+    padding-bottom: 0;
+  }
+
+  .rec-expanded-content.expanded {
+    max-height: 600px;
+    opacity: 1;
+    visibility: visible;
+    transition: max-height 0.4s ease-out, opacity 0.3s ease-out, visibility 0s linear 0s;
+    margin-top: 0;
+    padding-top: 0;
+  }
+
+  .rec-expanded-content .rec-description {
+    margin: 0 0 16px 0;
+    color: #666;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .rec-expanded-heading {
+    font-size: 12px;
+    font-weight: 600;
+    color: #666;
+    margin: 0 0 12px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .rec-expanded-list {
+    margin: 0 0 16px 0 !important;
+    padding-left: 0 !important;
+    list-style-type: none !important;
+    list-style: none !important;
+    counter-reset: step-counter;
+  }
+
+  .rec-expanded-list li {
+    font-size: 14px !important;
+    color: #666 !important;
+    line-height: 1.5;
+    margin-bottom: 10px;
+    counter-increment: step-counter;
+    padding-left: 28px !important;
+    position: relative;
+    list-style-type: none !important;
+    list-style: none !important;
+  }
+
+  .rec-expanded-list li::marker {
+    display: none !important;
+    content: '' !important;
+  }
+
+  .rec-expanded-list li:last-child {
+    margin-bottom: 0;
+  }
+
+  .rec-expanded-list li::before {
+    content: counter(step-counter);
+    position: absolute;
+    left: 0;
+    top: 2px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 18px;
+    height: 18px;
+    border-radius: 50%;
+    background: #E8F1FF;
+    color: #4169E1;
+    font-size: 11px;
+    font-weight: 600;
+  }
+
+  .rec-step-link {
+    color: #4169E1;
+    cursor: pointer;
+  }
+
+  .rec-step-link:hover {
+    text-decoration: underline;
+  }
+
+  .rec-disclaimer {
+    font-size: 13px;
+    color: #999;
+    line-height: 1.5;
+    margin: 0 0 12px 0;
+  }
+
+  .rec-help-link {
+    color: #4169E1;
+    text-decoration: none;
+    font-size: 14px;
+  }
+
+  .rec-help-link:hover {
+    text-decoration: underline;
+  }
+
+  .rec-show-less {
+    color: #4169E1;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 500;
+    cursor: pointer;
+    display: inline-block;
+    margin-top: 8px;
+    transition: color 0.2s;
+  }
+
+  .rec-show-less:hover {
+    color: #3154c7;
+    text-decoration: underline;
+  }
+
+  .rec-card.dismissed {
+    display: none;
+  }
+</style>
+
+<script>
+// Handle recommendation dismissals and expandable content
+document.addEventListener('DOMContentLoaded', function() {
+  const dismissButtons = document.querySelectorAll('.rec-dismiss');
+
+  dismissButtons.forEach(button => {
+    button.addEventListener('click', function(e) {
+      e.preventDefault();
+      e.stopPropagation();
+
+      const card = this.closest('.rec-card');
+      if (card) {
+        card.classList.add('dismissed');
+      }
+    });
+  });
+
+  // Handle "Tell me more" toggle
+  const tellMeMoreLinks = document.querySelectorAll('.rec-tell-me-more');
+
+  tellMeMoreLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const index = this.getAttribute('data-rec-index');
+      const expandedContent = document.querySelector(`.rec-expanded-content[data-rec-index="${index}"]`);
+
+      if (expandedContent) {
+        const isExpanded = expandedContent.classList.contains('expanded');
+
+        if (!isExpanded) {
+          // Show expanded content with transition
+          expandedContent.classList.add('expanded');
+          this.style.display = 'none'; // Hide "Tell me more"
+        }
+      }
+    });
+  });
+
+  // Handle "Show less" toggle
+  const showLessLinks = document.querySelectorAll('.rec-show-less');
+
+  showLessLinks.forEach(link => {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+
+      const index = this.getAttribute('data-rec-index');
+      const expandedContent = document.querySelector(`.rec-expanded-content[data-rec-index="${index}"]`);
+      const tellMeMoreLink = document.querySelector(`.rec-tell-me-more[data-rec-index="${index}"]`);
+
+      if (expandedContent) {
+        // Hide expanded content with transition
+        expandedContent.classList.remove('expanded');
+
+        if (tellMeMoreLink) {
+          tellMeMoreLink.style.display = 'inline-block'; // Show "Tell me more"
+        }
+      }
+    });
+  });
+
+  // Load other recommendation cards from JSON
+  fetch('/recommendations.json')
+    .then(response => response.json())
+    .then(recommendations => {
+      // Filter out "Map high-value rooms" since it's already hardcoded above
+      const otherRecs = recommendations.filter(rec => rec.title !== 'Map high-value rooms');
+
+      // Find the first card to insert after it
+      const firstCard = document.querySelector('.rec-card[data-rec-index="0"]');
+
+      if (firstCard && otherRecs.length > 0) {
+        // Generate HTML for each recommendation
+        otherRecs.forEach((rec, idx) => {
+          const recIndex = idx + 1; // Start from 1 since 0 is the custom card
+
+          const cardHTML = `
+            <div class="rec-card" data-rec-index="${recIndex}">
+              <div class="rec-header">
+                <div class="rec-icon">${rec.icon}</div>
+                <button class="rec-dismiss" data-rec-index="${recIndex}" aria-label="Dismiss recommendation">
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M6 10L8.5 12.5L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                  </svg>
+                </button>
+              </div>
+              <h3 class="rec-title">${rec.title}</h3>
+              <p class="rec-description">${rec.description}</p>
+              <button class="rec-action">${rec.buttonText}</button>
+            </div>
+          `;
+
+          // Insert after the last card
+          firstCard.insertAdjacentHTML('afterend', cardHTML);
+        });
+
+        // Re-attach event listeners for newly added dismiss buttons
+        const newDismissButtons = document.querySelectorAll('.rec-dismiss');
+        newDismissButtons.forEach(button => {
+          button.addEventListener('click', function(e) {
+            e.preventDefault();
+            e.stopPropagation();
+
+            const card = this.closest('.rec-card');
+            if (card) {
+              card.classList.add('dismissed');
+            }
+          });
+        });
+      }
+    })
+    .catch(error => {
+      console.error('Error loading recommendations:', error);
+    });
+});
+</script>

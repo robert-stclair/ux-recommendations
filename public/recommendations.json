@@ -1,0 +1,44 @@
+[
+  {
+    "icon": "💰",
+    "title": "Map high-value rooms",
+    "description": "Some of your most profitable rooms aren't available on key booking channels yet.",
+    "buttonText": "Map rooms now"
+  },
+  {
+    "icon": "📈",
+    "title": "Review pricing strategy",
+    "description": "Your rates haven't been updated in 30+ days. Consider adjusting for current demand.",
+    "buttonText": "Update rates"
+  },
+  {
+    "icon": "👶",
+    "title": "Fix family occupancy settings",
+    "description": "Your child occupancy settings don't match your room capacity, which might affect family bookings.",
+    "buttonText": "Fix settings"
+  },
+  {
+    "icon": "📸",
+    "title": "Showcase key facilities",
+    "description": "Missing photos of your pool, restaurant, or room views? These help guests make decisions.",
+    "buttonText": "Add facility photos"
+  },
+  {
+    "icon": "📸",
+    "title": "Add more photos",
+    "description": "Properties with more photos get up to 30% more bookings. Add images of your facilities and rooms.",
+    "buttonText": "Upload photos"
+  },
+  {
+    "icon": "💰",
+    "title": "Add missing rate plans",
+    "description": "Your high-performing rate plans could be generating more bookings on additional channels.",
+    "buttonText": "Add rate plans"
+  },
+  {
+    "icon": "📊",
+    "title": "Re-enable room mapping",
+    "description": "A high-value room was recently disconnected from one of your top channels.",
+    "buttonText": "Re-enable mapping"
+  }
+]
