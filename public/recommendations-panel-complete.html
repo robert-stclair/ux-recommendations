@@ -45,6 +45,10 @@
     margin-bottom: 0;
   }
 
+  .rec-card.smart-guide {
+    border-color: #C5D9F5;
+  }
+
   .rec-header {
     display: flex;
     justify-content: space-between;
@@ -297,26 +301,48 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 
+  // Fisher-Yates shuffle algorithm
+  function shuffleArray(array) {
+    const shuffled = [...array];
+    for (let i = shuffled.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+    }
+    return shuffled;
+  }
+
   // Load other recommendation cards from JSON
   fetch('/recommendations.json')
     .then(response => response.json())
     .then(recommendations => {
       // Filter out "Map high-value rooms" since it's already hardcoded above
-      const otherRecs = recommendations.filter(rec => rec.title !== 'Map high-value rooms');
+      let otherRecs = recommendations.filter(rec => rec.title !== 'Map high-value rooms');
+
+      // Check if Smart Guide is enabled (default to true)
+      const smartGuideEnabled = localStorage.getItem('smartGuideEnabled') !== 'false';
+
+      // Filter out Smart Guide recommendations if disabled
+      if (!smartGuideEnabled) {
+        otherRecs = otherRecs.filter(rec => !rec.smartGuide);
+      }
+
+      // Randomly shuffle the other recommendations
+      const shuffledRecs = shuffleArray(otherRecs);
 
       // Find the first card to insert after it
       const firstCard = document.querySelector('.rec-card[data-rec-index="0"]');
 
-      if (firstCard && otherRecs.length > 0) {
+      if (firstCard && shuffledRecs.length > 0) {
         // Generate HTML for each recommendation
-        otherRecs.forEach((rec, idx) => {
+        shuffledRecs.forEach((rec, idx) => {
           const recIndex = idx + 1; // Start from 1 since 0 is the custom card
+          const smartGuideClass = rec.smartGuide ? ' smart-guide' : '';
 
           const cardHTML = `
-            <div class="rec-card" data-rec-index="${recIndex}">
+            <div class="rec-card${smartGuideClass}" data-rec-index="${recIndex}">
               <div class="rec-header">
                 <div class="rec-icon">${rec.icon}</div>
-                <button class="rec-dismiss" data-rec-index="${recIndex}" aria-label="Dismiss recommendation">
+                <button class="rec-dismiss${smartGuideClass}" data-rec-index="${recIndex}" aria-label="Dismiss recommendation">
                   <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                     <path d="M6 10L8.5 12.5L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                   </svg>

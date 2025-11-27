@@ -41,22 +41,12 @@ document.addEventListener('DOMContentLoaded', function() {
     smartGuideToggle.checked = smartGuideEnabled;
   }
 
-  // Save setting when changed
+  // Save setting when changed and reload page
   if (smartGuideToggle) {
     smartGuideToggle.addEventListener('change', function() {
       localStorage.setItem('smartGuideEnabled', this.checked);
-      // Reload with query parameter
-      const url = new URL(window.location);
-      url.searchParams.set('smartGuide', this.checked);
-      window.location.href = url.toString();
+      // Reload page to apply changes
+      window.location.reload();
     });
-  }
-
-  // Set query parameter on initial load based on localStorage
-  const currentSmartGuide = new URLSearchParams(window.location.search).get('smartGuide');
-  if (currentSmartGuide === null && smartGuideEnabled) {
-    const url = new URL(window.location);
-    url.searchParams.set('smartGuide', 'true');
-    window.history.replaceState({}, '', url.toString());
   }
 });
