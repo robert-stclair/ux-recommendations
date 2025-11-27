@@ -24,6 +24,33 @@
   </div>
 </div>
 
+<!-- Connect to Agoda card -->
+<div class="rec-card" data-rec-index="1">
+  <div class="rec-header">
+    <div class="rec-icon">💰</div>
+    <button class="rec-dismiss" data-rec-index="1" aria-label="Dismiss recommendation">
+      <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <path d="M6 10L8.5 12.5L14 7" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+      </svg>
+    </button>
+  </div>
+  <h3 class="rec-title">You are not connected to a top global channel</h3>
+  <p class="rec-description">Agoda is consistently a top 5 channel in all markets so we recommend all customers give it a try.</p>
+  <a href="#" class="rec-tell-me-more" data-rec-index="1">Tell me more</a>
+  <div class="rec-expanded-content" data-rec-index="1">
+    <p class="rec-description">Additionally, Agoda is known to increases exposure to Asian travel bookers.</p>
+    <h4 class="rec-expanded-heading">Next steps</h4>
+    <ul class="rec-expanded-list">
+      <li><span class="rec-step-link">Sign up</span> to Agoda</li>
+      <li>After sign-up, <span class="rec-step-link">connect to Agoda</span></li>
+      <li><span class="rec-step-link">Map your rooms and rates</span> to Agoda</li>
+    </ul>
+    <p class="rec-description"><a href="#" class="rec-help-link">Need help? Follow this guide</a></p>
+    <p class="rec-disclaimer">Note: There may be reasons for your current configuration. This is just our observation based on your recent data.</p>
+    <a href="#" class="rec-show-less" data-rec-index="1">Show less</a>
+  </div>
+</div>
+
 <!-- Other cards will be loaded here by JavaScript -->
 
 <style>
@@ -84,6 +111,7 @@
 
   .rec-title {
     font-size: 16px;
+    line-height: 24px;
     font-weight: 600;
     color: #1A1A1A;
     margin: 0 0 8px 0;
@@ -329,16 +357,17 @@ document.addEventListener('DOMContentLoaded', function() {
       // Randomly shuffle the other recommendations
       const shuffledRecs = shuffleArray(otherRecs);
 
-      // Find the first card to insert after it
-      const firstCard = document.querySelector('.rec-card[data-rec-index="0"]');
+      // Find all hardcoded cards and get the last one
+      const hardcodedCards = document.querySelectorAll('.rec-card[data-rec-index]');
+      const lastHardcodedCard = hardcodedCards[hardcodedCards.length - 1];
 
-      if (firstCard && shuffledRecs.length > 0) {
-        // Generate HTML for each recommendation
-        shuffledRecs.forEach((rec, idx) => {
-          const recIndex = idx + 1; // Start from 1 since 0 is the custom card
+      if (lastHardcodedCard && shuffledRecs.length > 0) {
+        // Build all dynamic cards HTML
+        const dynamicCardsHTML = shuffledRecs.map((rec, idx) => {
+          const recIndex = idx + 2; // Start from 2 since 0 and 1 are hardcoded cards
           const smartGuideClass = rec.smartGuide ? ' smart-guide' : '';
 
-          const cardHTML = `
+          return `
             <div class="rec-card${smartGuideClass}" data-rec-index="${recIndex}">
               <div class="rec-header">
                 <div class="rec-icon">${rec.icon}</div>
@@ -353,10 +382,10 @@ document.addEventListener('DOMContentLoaded', function() {
               <button class="rec-action">${rec.buttonText}</button>
             </div>
           `;
+        }).join('');
 
-          // Insert after the last card
-          firstCard.insertAdjacentHTML('afterend', cardHTML);
-        });
+        // Insert all dynamic cards after the last hardcoded card
+        lastHardcodedCard.insertAdjacentHTML('afterend', dynamicCardsHTML);
 
         // Re-attach event listeners for newly added dismiss buttons
         const newDismissButtons = document.querySelectorAll('.rec-dismiss');
